@@ -15,3 +15,7 @@ function ColumnTask(props) {
 
 export default ColumnTask;
 git config --globaldsdasddasdasdasdsadasd user.name
+dasdasd
+dasdasd
+adadasdaad
+adasdasd
