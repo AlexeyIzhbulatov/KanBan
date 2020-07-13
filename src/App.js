@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import './App.css';
+import ColumnTask from "./ColumnTask";
 
 const inititalTodos = [
     {
         name: 'Create_Task1', priority: 10, status : 'Todo'
     },
     {
-        name: 'Create_Task2', priority: 20, status : 'isProgress'
+        name: 'Create_Task2', priority: 20, status : 'in Progress'
     },
     {
         name: 'Create_Task3', priority: 30, status : 'Review'
@@ -65,15 +66,19 @@ function App() {
             <div className="row">
                 <div className="col-sm">
                     To do
+                    <ColumnTask tasks={tasks} status='Todo'/>
                 </div>
                 <div className="col-sm">
                     in progress
+                    <ColumnTask tasks={tasks} status = 'in Progress'/>
                 </div>
                 <div className="col-sm">
                     Review
+                    <ColumnTask tasks={tasks} status = 'Review'/>
                 </div>
                 <div className="col-sm">
                     Done
+                    <ColumnTask tasks={tasks} status = 'Done'/>
                 </div>
             </div>
         </div>
