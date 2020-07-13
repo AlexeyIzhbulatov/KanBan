@@ -1,19 +1,32 @@
 import React, {useState} from 'react';
 import './App.css';
 import ColumnTask from "./ColumnTask";
+import { v4 as uuidv4 } from 'uuid';
 
 const inititalTodos = [
     {
-        name: 'Create_Task1', priority: 10, status : 'Todo'
+        id: uuidv4(),
+        name: 'Create_Task1',
+        priority: 10,
+        status : 'Todo'
     },
     {
-        name: 'Create_Task2', priority: 20, status : 'in Progress'
+        id: uuidv4(),
+        name: 'Create_Task2',
+        priority: 20,
+        status : 'in Progress'
     },
     {
-        name: 'Create_Task3', priority: 30, status : 'Review'
+        id: uuidv4(),
+        name: 'Create_Task3',
+        riority: 30,
+        status : 'Review'
     },
     {
-        name: 'Create_Task4', priority: 40, status : 'Done'
+        id: uuidv4(),
+        name: 'Create_Task4',
+        priority: 40,
+        status : 'Done'
     }
 ]
 
@@ -46,11 +59,15 @@ function App() {
         setIsOpenCreateTaskForm(false)
     }
 
+    const changeStatus = ({id, direction}) => {
+        console.log(id, direction)
+    }
+
   return (
     <div>
         <div className="container">
             <h1>Kanban</h1>
-            {!isOpenCreateTaskForm && <button type="button" class="btn btn-primary" onClick={openCreateTaskForm}>Create Task</button>}
+            {!isOpenCreateTaskForm && <button type="button" className="btn btn-primary" onClick={openCreateTaskForm}>Create Task</button>}
 
             {isOpenCreateTaskForm &&
             <form>
@@ -66,19 +83,19 @@ function App() {
             <div className="row">
                 <div className="col-sm">
                     To do
-                    <ColumnTask tasks={tasks} status='Todo'/>
+                    <ColumnTask tasks={tasks} status='Todo' changeStatus={changeStatus}/>
                 </div>
                 <div className="col-sm">
                     in progress
-                    <ColumnTask tasks={tasks} status = 'in Progress'/>
+                    <ColumnTask tasks={tasks} status = 'in Progress' changeStatus={changeStatus}/>
                 </div>
                 <div className="col-sm">
                     Review
-                    <ColumnTask tasks={tasks} status = 'Review'/>
+                    <ColumnTask tasks={tasks} status = 'Review' changeStatus={changeStatus}/>
                 </div>
                 <div className="col-sm">
                     Done
-                    <ColumnTask tasks={tasks} status = 'Done'/>
+                    <ColumnTask tasks={tasks} status = 'Done' changeStatus={changeStatus}/>
                 </div>
             </div>
         </div>
@@ -87,4 +104,3 @@ function App() {
 }
 
 export default App;
-dsdsd
