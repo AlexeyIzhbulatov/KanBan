@@ -1,107 +1,49 @@
 import React, {useState} from 'react';
 import './App.css';
 import ColumnTask from "./ColumnTask";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
-const inititalTodos = [
-    {
-        id: uuidv4(),
-        name: 'Create_Task1',
-        priority: 10,
-        status : 'Todo'
-    },
-    {
-        id: uuidv4(),
-        name: 'Create_Task2',
-        priority: 20,
-        status : 'in Progress'
-    },
-    {
-        id: uuidv4(),
-        name: 'Create_Task3',
-        riority: 30,
-        status : 'Review'
-    },
-    {
-        id: uuidv4(),
-        name: 'Create_Task4',
-        priority: 40,
-        status : 'Done'
-    }
-]
+const [isOpenTaskForm, setIsOpenTaskForm] = useState(false)
 
 function App() {
 
-    const [tasks, setTasks] = useState(inititalTodos)
+    const [task, setTask] = useState('')
 
-    const [isOpenCreateTaskForm,setIsOpenCreateTaskForm] = useState(false)
-    const [isActivedSumbitTask, setIsActivedSumbitTask] = useState(false)
-    const [taskInput, setTaskInput] = useState('')
-
-    const openCreateTaskForm = () => {
-        setIsOpenCreateTaskForm(true)
+    const addTask = () => {
+        console.log(task)
+        setTask('')
     }
 
-    const onTaskChange = (e) => {
-        setIsActivedSumbitTask(e.target.value.length > 4)
-        setTaskInput(e.target.value)
-    }
-
-    const submitForm = (e) => {
-        e.preventDefault()
-        console.log(taskInput)
-        closeRese()
-    }
-
-    const closeRese = () => {
-        setTaskInput('')
-        setIsActivedSumbitTask(false)
-        setIsOpenCreateTaskForm(false)
-    }
-
-    const changeStatus = ({id, direction}) => {
-        console.log(id, direction)
-    }
-
-  return (
-    <div>
-        <div className="container">
-            <h1>Kanban</h1>
-            {!isOpenCreateTaskForm && <button type="button" className="btn btn-primary" onClick={openCreateTaskForm}>Create Task</button>}
-
-            {isOpenCreateTaskForm &&
-            <form>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Task</label>
-                    <input type="text" className="form-control" onChange={onTaskChange} value={taskInput}/>
-                <button type="submit" className="btn btn-primary" disabled={!isActivedSumbitTask} onClick={submitForm}>Submit</button>
-                    <button type="button" className="btn btn-secondary" onClick={closeRese}>Cancel</button>
-                </div>
-            </form>
-            }
-
-            <div className="row">
-                <div className="col-sm">
-                    To do
-                    <ColumnTask tasks={tasks} status='Todo' changeStatus={changeStatus}/>
-                </div>
-                <div className="col-sm">
-                    in progress
-                    <ColumnTask tasks={tasks} status = 'in Progress' changeStatus={changeStatus}/>
-                </div>
-                <div className="col-sm">
-                    Review
-                    <ColumnTask tasks={tasks} status = 'Review' changeStatus={changeStatus}/>
-                </div>
-                <div className="col-sm">
-                    Done
-                    <ColumnTask tasks={tasks} status = 'Done' changeStatus={changeStatus}/>
+    return (
+        <div>
+            <div className="container">
+                <h1>Kanban</h1>
+                {! && <button type="button" className="btn btn-primary" onClick={addTask}>Add Task</button>}
+                { &&
+                <form>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Task</label>
+                        <input type="text" className="form-control" value={task} onChange={e => setTask(e.target.value)}/>
+                    </div>
+                </form>
+                }
+                <div className="row">
+                    <div className="col-sm">
+                        To do
+                    </div>
+                    <div className="col-sm">
+                        In progress
+                    </div>
+                    <div className="col-sm">
+                        Review
+                    </div>
+                    <div className="col-sm">
+                        Done
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;
-ewqeewqewqeqwewqeqw
