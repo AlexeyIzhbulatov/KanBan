@@ -7,7 +7,7 @@ function TaskCard(props) {
 
     return (
         <div>
-
+            {props.el.name}
         </div>
     );
 }
